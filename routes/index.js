@@ -4,8 +4,9 @@ const fs = require('fs');
 const path = require('path');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Chamoove API Server - CHAPIS' });
+router.get('/', async function(req, res, next) {
+  const routes = await txtToJson(path.resolve(__dirname, '../sample-feed/routes.txt'));
+  res.render('index', { title: 'Chamoove API Server - CHAPIS', routes });
 });
 
 const files = fs.readdirSync(path.resolve(__dirname, '../sample-feed/'));
